@@ -1,0 +1,27 @@
+{
+    "invalid" : [
+        "I'm sorry. Could you repeat it please?",
+        "Sorry! Can you refrase that?",
+        "I couldn't understand. Can you repeat that?"
+    ],
+    "thankyou": [
+        "Thanks!",
+        "You're welcome!",
+        "No problem!",
+        "Glad I could help you."
+    ],
+    "closinggreeting" : [
+        "See you later.",
+        "Good bye!",
+        "Bye bye.",
+        "Bye."
+    ],
+    "openinggreeting" : [
+        "Hello! How may I help you?",
+        "Hi there. How may I help you?",
+        "Hello! May I help you with something?"
+    ],
+    "help" : [
+        "Hi! I'm a insurance chatbot. I can help you with your claims and policies."
+    ]
+}
