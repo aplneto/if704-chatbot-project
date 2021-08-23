@@ -1,8 +1,8 @@
 # if704-chatbot-project
 
 ## Apresentações
-[Google Drive](https://drive.google.com/drive/folders/1_w3cTjcT9fL_p4zWD1kSBjvky1cARzIG)
-[Apresentação](/Slides NLP.pdf)
+* [Google Drive](https://drive.google.com/drive/folders/1_w3cTjcT9fL_p4zWD1kSBjvky1cARzIG)
+* [Apresentação](https://github.com/aplneto/if704-chatbot-project/blob/main/Slides%20NLP.pdf)
 
 ## Alunos
 * [Antônio Paulino](https://github.com/aplneto)
