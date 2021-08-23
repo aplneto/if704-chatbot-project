@@ -1,32 +1,44 @@
 {
     "checkclaimstatus" : {
-        "entities" : ["claimid", "ssnn", "email_address"],
+        "entities" : ["claimid", "ssnn", "email_address", "name"],
         "entities_aliases" : {
+            "name" : "Name",
             "claimid" : "Claim identification number",
             "ssnn" : "Social Security Number",
             "email_address" : "Email address"
         },
         "actions" : {
+            "search_claim_by_name" : ["name"],
             "search_claim_by_claimid" : ["claimid"],
             "search_claim_by_ssn" : ["ssn"],
             "search_claim_by_email" : ["email_address"]
         },
         "alias": {
+            "search_claim_by_name" : "search a claim by name",
             "search_claim_by_claimid" : "search a claim by id",
             "search_claim_by_ssn" : "search a claim by id Social Security Number",
             "search_claim_by_email" : "search a claim by e-mail address"
         }
     },
     "getproofofinsurance" : {
-        "entities" : ["policyid", "car_model", "car_brand", "car_year", "name"]
+        "entities" : ["policyid", "car_model", "car_brand", "car_year", "name"],
+        "alias" : {}
     },
     "openinggreeting" : {
         "entities" : ["name"],
         "actions" : {
             "greet" : ["name"]
-        }
+        },
+        "alias" : {}
     },
     "reportbrokenphone" : {
-        "entities" : ["phone_number"]
+        "entities" : ["policyid"],
+        "entities_aliases": {
+            "policyid" : "policy number"
+        },
+        "actions" : {
+            "open_claim" : ["policyid"]
+        },
+        "alias" : {}
     }
 }
