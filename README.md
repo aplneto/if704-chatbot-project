@@ -2,7 +2,7 @@
 
 ## Apresentações
 [Google Drive](https://drive.google.com/drive/folders/1_w3cTjcT9fL_p4zWD1kSBjvky1cARzIG)
-[Apresentação](Slides NLP.pdf)
+[Apresentação](/Slides NLP.pdf)
 
 ## Alunos
 * [Antônio Paulino](https://github.com/aplneto)
