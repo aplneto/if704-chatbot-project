@@ -23,5 +23,9 @@
     ],
     "help" : [
         "Hi! I'm a insurance chatbot. I can help you with your claims and policies."
+    ],
+    "greetings" : [
+        "Hello, %s",
+        "Hi, %s"
     ]
 }

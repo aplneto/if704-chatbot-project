@@ -32,7 +32,7 @@ class EntityClassifier():
     for x, y in zip(sequence[0], p[0]):
       if x == 0: break
       pair = (self.__vocab[x-1], self.__tags[y])
-      entities.append(pair)
+      entities.append(pair[::-1])
     return entities
 
 def load_intent_classifier(**kwargs):

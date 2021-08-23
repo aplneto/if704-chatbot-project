@@ -1,0 +1,27 @@
+{
+    "checkclaimstatus" : {
+        "entities" : ["claimid", "ssnn", "email_address"],
+        "entities_alis" : {
+            "claimid" : "Claim identification number",
+            "ssnn" : "Social Security Number",
+            "email_address" : "Email address"
+        },
+        "actions" : {
+            "search_claim_by_claimid" : ["claimid"],
+            "search_claim_by_ssn" : ["ssn"],
+            "search_claim_by_email" : ["email_address"]
+        }
+    },
+    "getproofofinsurance" : {
+        "entities" : ["policyid", "car_model", "car_brand", "car_year", "name"]
+    },
+    "openinggreeting" : {
+        "entities" : ["name"],
+        "actions" : {
+            "greet" : ["name"]
+        }
+    },
+    "reportbrokenphone" : {
+        "entities" : ["phone_number"]
+    }
+}

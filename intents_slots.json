@@ -1,3 +1,6 @@
 {
-    
+    "checkclaimstatus" : ["claimid", "ssnn", "email_address"],
+    "getproofofinsurance" : ["policyid", "car_model", "car_brand", "car_year", "name"],
+    "openinggreeting" : ["name"],
+    "reportbrokenphone" : ["phone_number"]
 }

@@ -29,7 +29,8 @@ def _parse_sentence():
     message = request.json['message']
     if message:
         intent = intent_classifier(message)
-        entities = intent_classifier(message)
+        entities = entity_classifier(message)
+        print(intent, entities)
         user_id = session['user_id']
         user_dialog_manager = dialogs[user_id]
         response = user_dialog_manager(intent, entities)
@@ -40,4 +41,10 @@ def _parse_sentence():
 if __name__ == '__main__':
     intent_classifier = load_intent_classifier()
     entity_classifier = load_entity_classifier()
-    server.run(host='0.0.0.0', port=9000)
+    intents = intent_classifier.classes
+    entities = entity_classifier._EntityClassifier__tags
+    print("Intençoes do domínio")
+    print(', '.join(intents))
+    print("Entidades do domínio")
+    print(', '.join(entities))
+    server.run(host='127.0.0.1', port=9000)

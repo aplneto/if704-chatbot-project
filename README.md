@@ -18,17 +18,21 @@
 
 ### Dados
 
-* [Dataset](https://github.com/awslabs/multi-domain-goal-oriented-dialogues-dataset)
+* [Dataset]
+
+[Dataset]: https://github.com/awslabs/multi-domain-goal-oriented-dialogues-dataset
 
 ### Intents
 
-* checkclaimstatus
+* checkclaimstatus (claimid, ssnn, email_address)
 * closinggreeting
 * confirmation
 * contentonly
-* getproofofinsurance
-* openinggreeting
+* getproofofinsurance (policyid, car_model, car_brand, car_year, name)
+* openinggreeting (name)
 * outofdomain
 * rejection
-* reportbrokenphone
+* reportbrokenphone (phone_number)
 * thankyou
+
+<!--O, car_brand, car_model, car_year, claimid, email_address, name, phone_number, policyid, ssn-->
