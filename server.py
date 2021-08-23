@@ -33,7 +33,7 @@ def _parse_sentence():
         print(intent, entities)
         user_id = session['user_id']
         user_dialog_manager = dialogs[user_id]
-        response = user_dialog_manager(intent, entities)
+        response = user_dialog_manager(message, intent, entities)
         return json.dumps(
             {'response' : response}
         )

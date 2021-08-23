@@ -19,6 +19,8 @@ class DialogManager(object):
         self.__patience = 0
         self.__possible_actions = []
         self.__current_action = ""
+        self.__waiting_for_variable = False
+        self.__current_message = ""
     
     @property
     def name(self):
@@ -28,7 +30,12 @@ class DialogManager(object):
     def intent(self):
         return self.__current_intent
     
-    def __call__(self, intent, entities = {}):
+    @property
+    def message(self):
+        return self.__current_message
+    
+    def __call__(self, message, intent, entities = {}):
+        self.__current_message = message
         if self.intent is None:
             if (intent in INVALID_INTENTS):
                 print(self.__patience)
@@ -40,36 +47,66 @@ class DialogManager(object):
     
     def __start_dialog(self, intent, entities):
         if self.__current_intent is None:
+            self.__patience = 0
             self.__current_intent = intent
         self.__entities += [(x, y) for x, y in entities if x != 'O']
+        if intent in ('outofdomain', 'contentonly') and self.__waiting_for_variable:
+            actions = DIALOG_FLOW[self.__current_intent]["actions"]
+            entity_needed = actions[self.__current_action][0]
+            self.__entities.append((entity_needed, self.message))
         
         if self.__current_action and (intent in ("confirmation", "rejection")):
             if intent == "confirmation":
-                action = current_action
+                action = "ask_for_entities"
+                self.__waiting_for_variable = True
             elif len(self.__possible_actions) > 0:
                 action = "ask_for_confirmation"
-                self.__current_action = self.__possible_actions
+                self.__current_action = self.__possible_actions.pop()
             else:
                 self.__current_action = ''
                 action = 'invalid'
+
         else:
-            action = 'invalid'
-            actions = DIALOG_FLOW[intent]["actions"]
+            action = ''
+            actions = DIALOG_FLOW[self.__current_intent]["actions"]
             for action_name in actions:
                 entities_needed = set(actions[action_name])
-                print(entities_needed, action_name)
                 if entities_needed <= set([x for x, y in self.__entities]):
                     action = action_name
+                    break
+            if len(action) == 0:
+                print(actions)
+                self.__possible_actions = [x for x in actions]
+                print(self.__possible_actions)
+                self.__current_action = self.__possible_actions.pop()
+                action = 'ask_for_confirmation'
         
         return self.__evaluate_action(action, self.__entities)
         
-
-    
     def __evaluate_action(self, action, entities):
-        
         if action == 'greet':
             name = [y for x, y in self.__entities if x == 'name']
             name = ' '.join(name)
             return np.random.choice(DIALOG_ANSWERS['greetings']) % name
-        elif action == 'invalid':
+        elif action == 'ask_for_entities':
+            return self.__ask_for_entities()
+        elif action == 'ask_for_confirmation':
+            return self.__ask_for_confirmation()
+        else:
             return np.random.choice(DIALOG_ANSWERS['invalid'])
+    
+    def __ask_for_entities(self):
+        actions = DIALOG_FLOW[self.__current_intent]["actions"]
+        entities_needed = actions[self.__current_action]
+        aliases = DIALOG_FLOW[self.__current_intent]["entities_aliases"]
+        names = []
+        for x in entities_needed:
+            names.append(aliases[x] if x in aliases else x)
+        asking = ', '.join(names[:-1:])
+        asking = [asking] if asking else []
+        asking = ' and '.join(asking + names[-1:])
+        return "Can you please tell me your %s?" % asking
+    
+    def __ask_for_confirmation(self):
+        action_name = DIALOG_FLOW[self.__current_intent]['alias'][self.__current_action]
+        return "Do you want me to %s?" % action_name

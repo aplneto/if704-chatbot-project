@@ -1,7 +1,7 @@
 {
     "checkclaimstatus" : {
         "entities" : ["claimid", "ssnn", "email_address"],
-        "entities_alis" : {
+        "entities_aliases" : {
             "claimid" : "Claim identification number",
             "ssnn" : "Social Security Number",
             "email_address" : "Email address"
@@ -10,6 +10,11 @@
             "search_claim_by_claimid" : ["claimid"],
             "search_claim_by_ssn" : ["ssn"],
             "search_claim_by_email" : ["email_address"]
+        },
+        "alias": {
+            "search_claim_by_claimid" : "search a claim by id",
+            "search_claim_by_ssn" : "search a claim by id Social Security Number",
+            "search_claim_by_email" : "search a claim by e-mail address"
         }
     },
     "getproofofinsurance" : {
